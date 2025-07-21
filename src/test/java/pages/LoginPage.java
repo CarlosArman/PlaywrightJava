@@ -1,4 +1,4 @@
-package page;
+package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -28,6 +28,7 @@ public class LoginPage extends BasePage {
     }
 
     @Override
+    @Step("Verificando la pagina de Login")
     public void verifyPage() {
         Logs.info("Verificando la pagina de Login");
         assertAll(

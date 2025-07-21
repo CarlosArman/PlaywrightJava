@@ -4,7 +4,7 @@ import annotations.Regression;
 import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import page.LoginPage;
+import pages.LoginPage;
 import utilities.BaseTest;
 import utilities.Logs;
 
@@ -30,6 +30,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @Regression
     public void loginSuccessTest(Page page) {
         Logs.info("Login Success Test");
         final var loginPage = new LoginPage(page);

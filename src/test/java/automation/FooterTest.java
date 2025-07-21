@@ -1,15 +1,12 @@
 package automation;
 
+import annotations.Regression;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import page.LoginPage;
+import pages.Footer;
+import pages.LoginPage;
 import utilities.BaseTest;
-import utilities.Logs;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class FooterTest extends BaseTest {
 
@@ -20,23 +17,18 @@ public class FooterTest extends BaseTest {
     }
 
     @Test
+    @Regression
     public void redesSocialesTest(Page page) {
-        Logs.info("Verificando la pagina de redes sociales");
-        final var twitterButton = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Twitter"));
-        final var facebookButton = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Facebook"));
-        final var linkedInButton = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("LinkedIn"));
+        final var footer = new Footer(page);
+        footer.verifyPage();
+        footer.verifyLinks("https://twitter.com/saucelabs", "https://www.facebook.com/saucelabs", "https://www.linkedin.com/company/sauce-labs/");
+    }
 
-        assertAll(
-                () -> assertThat(twitterButton).isVisible(),
-                () -> assertThat(twitterButton).isEnabled(),
-                () -> assertThat(twitterButton).hasAttribute("href", "https://twitter.com/saucelabs"),
-                () -> assertThat(facebookButton).isVisible(),
-                () -> assertThat(facebookButton).isEnabled(),
-                () -> assertThat(facebookButton).hasAttribute("href", "https://www.facebook.com/saucelabs"),
-                () -> assertThat(linkedInButton).isVisible(),
-                () -> assertThat(linkedInButton).isEnabled(),
-                () -> assertThat(linkedInButton).hasAttribute("href", "https://www.linkedin.com/company/sauce-labs/")
-        );
+    @Test
+    @Regression
+    public void descriptionTest(Page page) {
+        final var footer = new Footer(page);
+        footer.verifyDescription("© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy");
     }
 
 

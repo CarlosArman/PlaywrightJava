@@ -4,9 +4,9 @@ import annotations.Regression;
 import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import page.LoginPage;
-import page.ShoppingPage;
-import page.TopBar;
+import pages.LoginPage;
+import pages.ShoppingPage;
+import pages.TopBar;
 import utilities.BaseTest;
 import utilities.Logs;
 

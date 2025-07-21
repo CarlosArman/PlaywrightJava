@@ -1,4 +1,4 @@
-package page;
+package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -38,6 +38,7 @@ public class ShoppingPage extends BasePage {
     }
 
     @Override
+    @Step("Verificando el pagina de Shopping")
     public void verifyPage() {
         Logs.info("Verificando el pagina de Shopping");
         assertAll(

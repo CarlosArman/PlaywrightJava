@@ -2,16 +2,12 @@ package automation;
 
 import annotations.Regression;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import page.LoginPage;
-import page.TopBar;
+import pages.BurgerMenu;
+import pages.LoginPage;
+import pages.TopBar;
 import utilities.BaseTest;
-import utilities.Logs;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BurgerMenuTests extends BaseTest {
 
@@ -28,35 +24,25 @@ public class BurgerMenuTests extends BaseTest {
     @Test
     @Regression
     public void verificarBurgerMenuTest(Page page) {
-        Logs.info("Verificando los elementos del burger menu");
-        assertAll(
-                () -> assertThat(page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("All Items"))).isVisible(),
-                () -> assertThat(page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("About"))).isVisible(),
-                () -> assertThat(page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Logout"))).isVisible(),
-                () -> assertThat(page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Reset App State"))).isVisible()
+        final var burgerMenu = new BurgerMenu(page);
+        burgerMenu.verifyPage();
 
-        );
     }
 
     @Test
+    @Regression
     public void logoutTest(Page page) {
-        Logs.info("Logout Test");
-        Logs.info("Haciendo click en logout button");
-        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Logout")).click();
+        final var burgerMenu = new BurgerMenu(page);
+        burgerMenu.clickLogoutButton();
+        final var loginPage = new LoginPage(page);
+        loginPage.verifyPage();
 
-        Logs.info("Verifico que este en la pagina de Login");
-        assertThat(page.getByText("Swag Labs")).isVisible();
     }
 
     @Test
+    @Regression
     public void aboutButtonTest(Page page) {
-        Logs.info("Verificando el hipervinculo about");
-        final var aboutButton = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("About"));
-
-        assertAll(
-                () -> assertThat(aboutButton).isVisible(),
-                () -> assertThat(aboutButton).isEnabled(),
-                () -> assertThat(aboutButton).hasAttribute("href", "https://saucelabs.com/")
-        );
+        final var burgerMenu = new BurgerMenu(page);
+        burgerMenu.verifyAboutLink("https://saucelabs.com/");
     }
 }
