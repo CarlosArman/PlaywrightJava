@@ -11,12 +11,12 @@ import utilities.Logs;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class ItemDetailPage extends BasePage {
-    final private Locator itemName;
-    final private Locator itemDescription;
-    final private Locator itemPrice;
-    final private Locator itemImage;
-    final private Locator addToCartButton;
-    final private Locator backToProductsButton;
+    private final Locator itemName;
+    private final Locator itemDescription;
+    private final Locator itemPrice;
+    private final Locator itemImage;
+    private final Locator addToCartButton;
+    private final Locator backToProductsButton;
 
     public ItemDetailPage(Page page) {
         super(page);

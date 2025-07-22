@@ -7,10 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 
 @UsePlaywright(CustomOptions.class)
 public class BaseTest {
+    protected final CommonFlows commonFlows = new CommonFlows();
+
     @BeforeEach
     public void setUpMaster(Page page) {
         Logs.info("In setUpMaster");
-        page.navigate("/");
+        PageProvider.setPage(page);
     }
 
     @AfterEach

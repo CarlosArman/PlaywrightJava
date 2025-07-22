@@ -3,6 +3,7 @@ package automation;
 import annotations.Regression;
 import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import utilities.BaseTest;
@@ -12,20 +13,26 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class LoginTests extends BaseTest {
 
+    private LoginPage loginPage;
+
+    @BeforeEach
+    public void setUp(Page page) {
+        loginPage = new LoginPage(page);
+        commonFlows.goToLoginPage();
+    }
+
     @Test
     @Regression
-    public void mensajeErrorTest(Page page) {
+    public void mensajeErrorTest() {
         Logs.info("Test mensaje error");
-        final var loginPage = new LoginPage(page);
         loginPage.fillForm("locked_out_user", "secret_sauce");
         loginPage.verifyErrorMessage("Epic sadface: Sorry, this user has been locked out.");
     }
 
     @Test
     @Regression
-    public void verificarPaginaLoginTest(Page page) {
+    public void verificarPaginaLoginTest() {
         Logs.info("Verificando la pagina de Login");
-        final var loginPage = new LoginPage(page);
         loginPage.verifyPage();
     }
 
@@ -33,7 +40,6 @@ public class LoginTests extends BaseTest {
     @Regression
     public void loginSuccessTest(Page page) {
         Logs.info("Login Success Test");
-        final var loginPage = new LoginPage(page);
         loginPage.fillForm("standard_user", "secret_sauce");
         Logs.info("Verificando la pagina de Shopping");
         Assertions.assertAll(

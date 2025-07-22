@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class ShoppingPage extends BasePage {
 
-    final private Locator title;
-    final private Locator inventoryList;
-    final private Locator select;
-    final private Locator itemPrice;
-    final private Locator itemName;
-    final private Locator itemImage;
-    final private Locator addToCartButton;
+    private final Locator title;
+    private final Locator inventoryList;
+    private final Locator select;
+    private final Locator itemPrice;
+    private final Locator itemName;
+    private final Locator itemImage;
+    private final Locator addToCartButton;
 
     private Locator getItemName(String state, String itemName) {
         String newItemName = String.format("%s %s", state, itemName)

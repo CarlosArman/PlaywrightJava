@@ -6,43 +6,35 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.BurgerMenu;
 import pages.LoginPage;
-import pages.TopBar;
 import utilities.BaseTest;
 
 public class BurgerMenuTests extends BaseTest {
+    private LoginPage loginPage;
+    private BurgerMenu burgerMenu;
 
     @BeforeEach
     public void setUp(Page page) {
-        final var loginPage = new LoginPage(page);
-
-        loginPage.fillForm("standard_user", "secret_sauce");
-
-        final var topBar = new TopBar(page);
-        topBar.clickBurgerMenuButton();
+        loginPage = new LoginPage(page);
+        burgerMenu = new BurgerMenu(page);
+        commonFlows.openBurgerMenu(page);
     }
 
     @Test
     @Regression
-    public void verificarBurgerMenuTest(Page page) {
-        final var burgerMenu = new BurgerMenu(page);
+    public void verificarBurgerMenuTest() {
         burgerMenu.verifyPage();
-
     }
 
     @Test
     @Regression
-    public void logoutTest(Page page) {
-        final var burgerMenu = new BurgerMenu(page);
+    public void logoutTest() {
         burgerMenu.clickLogoutButton();
-        final var loginPage = new LoginPage(page);
         loginPage.verifyPage();
-
     }
 
     @Test
     @Regression
-    public void aboutButtonTest(Page page) {
-        final var burgerMenu = new BurgerMenu(page);
+    public void aboutButtonTest() {
         burgerMenu.verifyAboutLink("https://saucelabs.com/");
     }
 }

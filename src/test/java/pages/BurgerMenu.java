@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BurgerMenu extends BasePage {
 
-    final private Locator allItemsButton;
-    final private Locator aboutButton;
-    final private Locator logoutButton;
-    final private Locator ResetAppStateButton;
+    private final Locator allItemsButton;
+    private final Locator aboutButton;
+    private final Locator logoutButton;
+    private final Locator ResetAppStateButton;
 
     public BurgerMenu(Page page) {
         super(page);

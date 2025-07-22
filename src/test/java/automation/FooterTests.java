@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import pages.Footer;
 import utilities.BaseTest;
 
-public class FooterTest extends BaseTest {
+public class FooterTests extends BaseTest {
     private Footer footer;
 
     @BeforeEach

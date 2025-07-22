@@ -11,13 +11,15 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class TopBar extends BasePage {
 
-    final private Locator itemCounter;
-    final private Locator burgerMenuButton;
+    private final Locator itemCounter;
+    private final Locator burgerMenuButton;
+    private final Locator checkoutButton;
 
     public TopBar(Page page) {
         super(page);
         this.itemCounter = page.getByTestId("shopping-cart-badge");
         this.burgerMenuButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Open Menu"));
+        this.checkoutButton = page.getByTestId("shopping-cart-link");
     }
 
     @Override
@@ -36,5 +38,12 @@ public class TopBar extends BasePage {
         Logs.info("Haciendo click en el burger menu button");
         burgerMenuButton.click();
     }
+
+    @Step("Haciendo click en el boton checkout")
+    public void clickCheckoutButton() {
+        Logs.info("Haciendo click en el boton checkout");
+        checkoutButton.click();
+    }
+
 
 }

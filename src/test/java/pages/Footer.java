@@ -11,10 +11,10 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class Footer extends BasePage {
-    final private Locator twitterButton;
-    final private Locator facebookButton;
-    final private Locator linkedInButton;
-    final private Locator descriptionFooter;
+    private final Locator twitterButton;
+    private final Locator facebookButton;
+    private final Locator linkedInButton;
+    private final Locator descriptionFooter;
 
     public Footer(Page page) {
         super(page);
